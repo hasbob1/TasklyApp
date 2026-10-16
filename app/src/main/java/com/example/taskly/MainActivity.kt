@@ -3,26 +3,32 @@ package com.example.taskly
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.taskly.ui.navigation.AppNavGraph
-import com.example.taskly.ui.navigation.TasklyBottomBar
 import com.example.taskly.ui.theme.TasklyTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+
+        val app = application as TasklyApplication
+
         setContent {
             TasklyTheme {
-                val navController = rememberNavController()
-                Scaffold(
-                    bottomBar = { TasklyBottomBar(navController) }
-                ) { innerPadding ->
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background,
+                ) {
                     AppNavGraph(
-                        navController = navController,
-                        modifier = Modifier.padding(innerPadding)
+                        repository = app.repository,
+                        reminderScheduler = app.reminderScheduler,
                     )
                 }
             }
