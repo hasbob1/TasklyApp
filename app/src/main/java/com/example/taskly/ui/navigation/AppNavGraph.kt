@@ -1,42 +1,59 @@
 package com.example.taskly.ui.navigation
+
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.taskly.ui.dashboard.DashboardScreen
+import com.example.taskly.data.TaskRepository
 import com.example.taskly.ui.tasks.AddEditTaskScreen
+import com.example.taskly.ui.tasks.AddEditViewModel
 import com.example.taskly.ui.tasks.TaskListScreen
+import com.example.taskly.ui.tasks.TaskListViewModel
+import com.example.taskly.util.ReminderScheduler
+
+private object Routes {
+    const val TASKS = "tasks"
+    const val ADD = "add"
+    const val EDIT = "edit/{taskId}"
+
+    fun edit(taskId: Long) = "edit/$taskId"
+}
+
 @Composable
-fun AppNavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.Tasks.route,
-        modifier = modifier
-    ) {
-        composable(Screen.Tasks.route) {
+fun AppNavGraph(
+    repository: TaskRepository,
+    reminderScheduler: ReminderScheduler,
+) {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = Routes.TASKS) {
+        composable(Routes.TASKS) {
+            val viewModel: TaskListViewModel =
+                viewModel(factory = TaskListViewModel.factory(repository, reminderScheduler))
             TaskListScreen(
-                onAddClick = { navController.navigate(Screen.AddEdit.createRoute()) }
+                viewModel = viewModel,
+                onAddTask = { navController.navigate(Routes.ADD) },
+                onEditTask = { id -> navController.navigate(Routes.edit(id)) },
             )
         }
-        composable(Screen.Dashboard.route) {
-            DashboardScreen()
+        composable(Routes.ADD) {
+            val viewModel: AddEditViewModel =
+                viewModel(factory = AddEditViewModel.factory(repository, reminderScheduler, null))
+            AddEditTaskScreen(viewModel = viewModel, onNavigateUp = { navController.popBackStack() })
         }
         composable(
-            route = Screen.AddEdit.route,
-            arguments = listOf(
-                navArgument("taskId") {
-                    type = NavType.IntType
-                    defaultValue = -1
-                }
-            )
+            route = Routes.EDIT,
+            arguments = listOf(navArgument("taskId") { type = NavType.LongType }),
         ) { entry ->
-            AddEditTaskScreen(
-                taskId = entry.arguments?.getInt("taskId") ?: -1,
-                onBack = { navController.popBackStack() }
+            val taskId = entry.arguments?.getLong("taskId")
+            val viewModel: AddEditViewModel = viewModel(
+                key = "edit_$taskId",
+                factory = AddEditViewModel.factory(repository, reminderScheduler, taskId),
             )
+            AddEditTaskScreen(viewModel = viewModel, onNavigateUp = { navController.popBackStack() })
         }
     }
 }
