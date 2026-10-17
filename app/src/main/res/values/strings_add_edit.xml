@@ -1,2 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="add_edit_title_new">New task</string>
+    <string name="add_edit_title_edit">Edit task</string>
+    <string name="add_edit_cd_back">Back</string>
+    <string name="add_edit_cd_delete">Delete task</string>
+
+    <string name="add_edit_field_title">Title</string>
+    <string name="add_edit_field_title_hint">e.g. Finish calculus assignment</string>
+    <string name="add_edit_field_description">Description (optional)</string>
+    <string name="add_edit_field_description_hint">Chapters, links, things to remember...</string>
+    <string name="add_edit_counter">%1$d/%2$d</string>
+
+    <string name="add_edit_subject_label">Subject</string>
+    <string name="add_edit_subject_placeholder">Choose a subject</string>
+    <string name="add_edit_subject_new">New subject...</string>
+
+    <string name="add_edit_section_due">Deadline</string>
+    <string name="add_edit_section_priority">Priority</string>
+    <string name="add_edit_date_next_week">Next week</string>
+    <string name="add_edit_date_change">Change</string>
+    <string name="add_edit_date_picker_confirm">Select</string>
+
+    <string name="add_edit_time_label">Time</string>
+    <string name="add_edit_time_picker_title">Select time</string>
+    <string name="add_edit_error_deadline_past">That date and time have already passed</string>
+
+    <string name="add_edit_section_reminder">Remind me</string>
+    <string name="add_edit_reminder_none">At deadline only</string>
+    <string name="add_edit_reminder_15m">15 min before</string>
+    <string name="add_edit_reminder_1h">1 hour before</string>
+    <string name="add_edit_reminder_1d">1 day before</string>
+    <string name="add_edit_reminder_hint">You always get a notification at the deadline itself.</string>
+
+    <string name="add_edit_error_title_empty">Please enter a title</string>
+    <string name="add_edit_error_title_too_long">Title is too long</string>
+    <string name="add_edit_error_subject">Please choose a subject</string>
+
+    <string name="add_edit_save">Save task</string>
+    <string name="add_edit_save_changes">Save changes</string>
+
+    <string name="add_edit_delete_dialog_title">Delete this task?</string>
+    <string name="add_edit_delete_dialog_message">This cannot be undone.</string>
+
+    <string name="add_edit_new_subject_title">New subject</string>
+    <string name="add_edit_new_subject_name">Subject name</string>
+    <string name="add_edit_new_subject_color">Color</string>
+    <string name="add_edit_new_subject_add">Add</string>
+
+    <string name="add_edit_subject_manage">Manage subjects</string>
+    <string name="add_edit_manage_title">Subjects</string>
+    <string name="add_edit_manage_done">Done</string>
+    <string name="add_edit_edit_subject_title">Edit subject</string>
+    <string name="add_edit_save_subject">Save</string>
+    <string name="add_edit_cd_edit_subject">Edit subject</string>
+    <string name="add_edit_cd_delete_subject">Delete subject</string>
+    <string name="add_edit_delete_subject_title">Delete subject?</string>
+    <string name="add_edit_delete_subject_message_empty">This subject has no tasks.</string>
+    <string name="add_edit_delete_subject_message_tasks">The tasks of this subject will be deleted too.</string>
+    <plurals name="add_edit_subject_task_count">
+        <item quantity="one">%1$d task</item>
+        <item quantity="other">%1$d tasks</item>
+    </plurals>
 </resources>
