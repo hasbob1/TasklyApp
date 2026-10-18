@@ -1,2 +1,27 @@
 <resources>
+    <string name="task_list_title">My tasks</string>
+    <string name="task_list_subtitle_empty">Plan your study, one task at a time.</string>
+    <string name="task_list_subtitle_all_done">All caught up - great work!</string>
+    <string name="task_list_subtitle_progress">%1$d to do, %2$d done</string>
+    <string name="task_list_mode_day">By day</string>
+    <string name="task_list_mode_subject">By subject</string>
+    <string name="task_list_filter_all">All</string>
+    <string name="task_list_filter_all_subjects">All subjects</string>
+    <string name="task_list_new_task">New task</string>
+    <string name="task_list_cd_delete">Delete task</string>
+    <string name="task_list_deleted">\"%1$s\" deleted</string>
+    <string name="task_list_undo">Undo</string>
+    <string name="task_list_empty_title">No tasks yet</string>
+    <string name="task_list_empty_message">Add your first assignment or exam and never miss a deadline.</string>
+    <string name="task_list_empty_action">Add task</string>
+    <string name="task_list_empty_day_title">Free day!</string>
+    <string name="task_list_empty_day_message">Nothing is due on this day. Enjoy it or get ahead.</string>
+    <string name="task_list_empty_subject_title">Nothing here yet</string>
+    <string name="task_list_empty_subject_message">There are no tasks for this subject.</string>
+    <string name="task_list_show_all">Show all</string>
+    <string name="task_list_search_hint">Search tasks by title</string>
+    <string name="task_list_search_clear">Clear search</string>
+    <string name="task_list_empty_search_title">No matches</string>
+    <string name="task_list_empty_search_message">Nothing matches \"%1$s\". Check the spelling or clear the filters.</string>
+    <string name="task_list_empty_search_action">Clear search</string>
 </resources>
