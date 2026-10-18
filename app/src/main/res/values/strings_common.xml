@@ -1,2 +1,25 @@
 <resources>
+    <string name="common_today">Today</string>
+    <string name="common_tomorrow">Tomorrow</string>
+    <string name="common_yesterday">Yesterday</string>
+    <string name="common_overdue">Overdue</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_delete">Delete</string>
+    <string name="priority_low">Low</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_high">High</string>
+    <string name="task_card_no_subject">No subject</string>
+    <string name="task_card_cd_share">Share task</string>
+    <string name="notif_channel_name">Deadline reminders</string>
+    <string name="notif_channel_description">Reminders before and at the deadline of your tasks</string>
+    <string name="notif_title_due_soon">Due soon: %1$s</string>
+    <string name="notif_title_due_now">Due now: %1$s</string>
+    <string name="notif_text_early">Due at %1$s</string>
+    <string name="notif_text_early_subject">Due at %1$s - %2$s</string>
+    <string name="notif_text_subject">%1$s - Time to wrap it up!</string>
+    <string name="notif_text_generic">Time to wrap it up!</string>
+    <string name="share_chooser_title">Share task via</string>
+    <string name="share_body">📌 %1$s\n📚 Subject: %2$s\n📅 Due: %3$s\nPriority: %4$s</string>
+    <string name="share_notes">📝 %1$s</string>
+    <string name="share_footer">Sent from Taskly - Student Planner</string>
 </resources>
