@@ -11,7 +11,6 @@ private val Context.settingsDataStore by preferencesDataStore(name = "settings")
 
 class SettingsDataStore(private val context: Context) {
 
-    /** null = المستخدم ما اختارش، فنتبع theme السيستم. */
     val darkMode: Flow<Boolean?> = context.settingsDataStore.data.map { it[DARK_MODE_KEY] }
 
     suspend fun setDarkMode(enabled: Boolean) {
