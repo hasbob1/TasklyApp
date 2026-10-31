@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_remaining">Remaining</string>
+    <string name="dashboard_completed">Completed</string>
+    <string name="dashboard_overdue">Overdue</string>
+    <string name="dashboard_progress">%1$d%% done (%2$d of %3$d)</string>
+    <string name="dashboard_upcoming">Upcoming</string>
+    <string name="dashboard_nothing_due">Nothing due. Enjoy the free time!</string>
+    <string name="dashboard_by_subject">By subject</string>
+    <string name="dashboard_subject_count">%1$d/%2$d</string>
+    <string name="dashboard_dark_mode">Dark mode</string>
+</resources>
