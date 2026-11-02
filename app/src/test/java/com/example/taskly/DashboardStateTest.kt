@@ -49,7 +49,7 @@ class DashboardStateTest {
             task(4, due = today),
         )
 
-        val upcoming = buildDashboardState(tasks, emptyList(), null, now).upcoming
+        val upcoming = buildDashboardState(tasks, emptyList(), now).upcoming
 
         assertEquals(listOf(4L, 1L), upcoming.map { it.task.id })
     }

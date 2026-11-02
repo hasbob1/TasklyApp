@@ -3,7 +3,6 @@
 package com.example.taskly.ui.dashboard
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,12 +20,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -39,7 +36,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.taskly.R
 import com.example.taskly.TasklyApplication
-import com.example.taskly.data.SettingsDataStore
 import com.example.taskly.util.formatShort
 import com.example.taskly.util.labelRes
 import com.example.taskly.util.toRelativeLabel
@@ -80,13 +76,6 @@ fun DashboardScreen(
                 item { SectionTitle(stringResource(R.string.dashboard_by_subject)) }
                 items(state.subjectStats, key = { "subject-${it.subject.id}" }) { SubjectRow(it) }
             }
-
-            item {
-                DarkModeCard(
-                    checked = state.darkMode ?: isSystemInDarkTheme(),
-                    onCheckedChange = viewModel::onDarkModeChange,
-                )
-            }
         }
     }
 }
@@ -94,8 +83,7 @@ fun DashboardScreen(
 @Composable
 private fun rememberDashboardViewModel(): DashboardViewModel {
     val app = LocalContext.current.applicationContext as TasklyApplication
-    val settings = remember { SettingsDataStore(app) }
-    return viewModel(factory = DashboardViewModel.factory(app.repository, settings))
+    return viewModel(factory = DashboardViewModel.factory(app.repository))
 
 }
 
@@ -214,24 +202,4 @@ private fun SubjectRow(stat: SubjectStat) {
 @Composable
 private fun ColorDot(color: Color) {
     Box(modifier = Modifier.size(12.dp).background(color, CircleShape))
-}
-
-@Composable
-private fun DarkModeCard(checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = stringResource(R.string.dashboard_dark_mode),
-                style = MaterialTheme.typography.titleMedium,
-
-                modifier = Modifier.weight(1f),
-            )
-            Switch(checked = checked, onCheckedChange = onCheckedChange)
-        }
-    }
 }

@@ -9,5 +9,4 @@
     <string name="dashboard_nothing_due">Nothing due. Enjoy the free time!</string>
     <string name="dashboard_by_subject">By subject</string>
     <string name="dashboard_subject_count">%1$d/%2$d</string>
-    <string name="dashboard_dark_mode">Dark mode</string>
 </resources>
