@@ -73,12 +73,12 @@ fun DashboardScreen(
                     )
                 }
             } else {
-                items(state.upcoming, key = { it.task.id }) { UpcomingRow(it) }
+                items(state.upcoming, key = { "task-${it.task.id}" }) { UpcomingRow(it) }
             }
 
             if (state.subjectStats.isNotEmpty()) {
                 item { SectionTitle(stringResource(R.string.dashboard_by_subject)) }
-                items(state.subjectStats, key = { it.subject.id }) { SubjectRow(it) }
+                items(state.subjectStats, key = { "subject-${it.subject.id}" }) { SubjectRow(it) }
             }
 
             item {
