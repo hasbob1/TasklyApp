@@ -25,7 +25,6 @@ data class DashboardUiState(
     val stats: TaskStats = TaskStats(),
     val upcoming: List<UpcomingTask> = emptyList(),
     val subjectStats: List<SubjectStat> = emptyList(),
-    val darkMode: Boolean? = null,
 )
 
 fun calculateStats(tasks: List<Task>, now: LocalDateTime): TaskStats = TaskStats(
@@ -39,7 +38,6 @@ fun calculateStats(tasks: List<Task>, now: LocalDateTime): TaskStats = TaskStats
 fun buildDashboardState(
     tasks: List<Task>,
     subjects: List<Subject>,
-    darkMode: Boolean?,
     now: LocalDateTime,
 ): DashboardUiState {
     val subjectsById = subjects.associateBy { it.id }
@@ -59,6 +57,5 @@ fun buildDashboardState(
         stats = calculateStats(tasks, now),
         upcoming = upcoming,
         subjectStats = subjectStats,
-        darkMode = darkMode,
     )
 }

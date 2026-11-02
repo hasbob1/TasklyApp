@@ -1,13 +1,21 @@
 package com.example.taskly.ui.navigation
 
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.taskly.data.TaskRepository
+import com.example.taskly.ui.dashboard.DashboardScreen
 import com.example.taskly.ui.tasks.AddEditTaskScreen
 import com.example.taskly.ui.tasks.AddEditViewModel
 import com.example.taskly.ui.tasks.TaskListScreen
@@ -28,8 +36,23 @@ fun AppNavGraph(
     reminderScheduler: ReminderScheduler,
 ) {
     val navController = rememberNavController()
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val showBottomBar = backStackEntry?.destination?.route in
+        setOf(Screen.Tasks.route, Screen.Dashboard.route)
 
-    NavHost(navController = navController, startDestination = Routes.TASKS) {
+    Scaffold(
+        // Each screen has its own Scaffold and handles system bars itself,
+        // so the outer Scaffold must not add status-bar padding on top.
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        bottomBar = { if (showBottomBar) TasklyBottomBar(navController) },
+    ) { innerPadding ->
+    NavHost(
+        navController = navController,
+        startDestination = Routes.TASKS,
+        modifier = Modifier
+            .padding(innerPadding)
+            .consumeWindowInsets(innerPadding),
+    ) {
         composable(Routes.TASKS) {
             val viewModel: TaskListViewModel =
                 viewModel(factory = TaskListViewModel.factory(repository, reminderScheduler))
@@ -55,5 +78,9 @@ fun AppNavGraph(
             )
             AddEditTaskScreen(viewModel = viewModel, onNavigateUp = { navController.popBackStack() })
         }
+        composable(Screen.Dashboard.route) {
+            DashboardScreen()
+        }
+    }
     }
 }
